@@ -422,7 +422,7 @@ def expand_node(sentence, past):
         return (probs, past)
 
 def create_stress_dictionary():
-    pronounce_file = open("/content/drive/MyDrive/true_poetry/pronounce.txt", "r")
+    pronounce_file = open("pronounce.txt", "r")
     stress_dictionary = {}
     for line in pronounce_file:
         line = line.strip("\n")
@@ -449,7 +449,7 @@ def create_stress_dictionary():
     return stress_dictionary
 
 def create_rhyme_dictionary(tokenizer):
-    pronounce_file = open("/content/drive/MyDrive/true_poetry/pronounce.txt", "r")
+    pronounce_file = open("pronounce.txt", "r")
     rhyme_dictionary = {}
     reverse_rhyme_dictionary = {}
     syllable_count_dictionary = {}
@@ -482,8 +482,8 @@ def create_rhyme_dictionary(tokenizer):
         else:
             reverse_rhyme_dictionary[outstring]=[word.lower()]
     
-    rhyming_tokens = pickle.load( open( "/content/drive/MyDrive/true_poetry/rhyming_tokens.p", "rb" ) )
-    syllable_tokens = pickle.load( open( "/content/drive/MyDrive/true_poetry/syllable_tokens.p", "rb" ) )
+    rhyming_tokens = pickle.load( open( "rhyming_tokens.p", "rb" ) )
+    syllable_tokens = pickle.load( open( "syllable_tokens.p", "rb" ) )
     
     bad_rhymes = ["a","an","it","is","as","at","was","of","at","that",
                      "has","your","my","his","their","on","for","its","to",
@@ -558,7 +558,7 @@ def init_limerick_generator():
 
   rhyme_dictionary, reverse_rhyme_dictionary, bad_rhymes, syllable_count_dictionary, rhyming_tokens, syllable_tokens = create_rhyme_dictionary(tokenizer)
   stress_dictionary = create_stress_dictionary()   
-  stress_tokens = pickle.load( open("/content/drive/MyDrive/true_poetry/stress_tokens.p", "rb"))
+  stress_tokens = pickle.load( open("stress_tokens.p", "rb"))
 
 def generate_limerick(prompt, input_model):
     global rhyme_dictionary
@@ -630,8 +630,8 @@ def generate_limerick(prompt, input_model):
         print("*" * 12)
 
         poem_for_gruen = [poem_for_gruen]
-
-        return gruen.get_gruen(poem_for_gruen)
+            
+        return poem_for_gruen
 
 def ram_gruen(text):
   return gruen.get_gruen([text])  
